@@ -24,7 +24,7 @@ enum Value {
   king = "K",
 }
 
-type CardProps = {
+export type CardProps = {
   value: Value;
   suit: Suit;
   // Key right now should be "value+suit", and has to be manually set as such.

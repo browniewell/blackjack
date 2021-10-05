@@ -1,25 +1,34 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
-import { Card, deckOfCards } from "./components/Card";
+import { Card, CardProps, deckOfCards } from "./components/Card";
 
 let cards = deckOfCards;
+let i: number = 0;
+
+// TODO: 2 of Clubs gets skipped and I'm not sure why, but it might not matter
+const Hand = () => {
+  const [hand, setHand] = useState<CardProps[]>([]);
+  return (
+    <View>
+      {hand?.map(Card)}
+      <Button
+        title="Draw"
+        onPress={() => {
+          setHand((arr) => [...arr, cards[i]]);
+          i++;
+        }}
+      />
+    </View>
+  );
+};
 
 // let hand = cards.map(Card);
-let hand: JSX.Element[] = [];
-let i: number = 0;
 
 export default function App() {
   return (
     // Hand isn't being rerendered, but cards are getting added correctly
     <View style={styles.container}>
-      {hand}
-      <Button
-        title="Draw"
-        onPress={() => {
-          hand.push(Card(cards[i]));
-          i++;
-        }}
-      />
+      <Hand />
     </View>
   );
 }
