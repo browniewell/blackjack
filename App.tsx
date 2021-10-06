@@ -3,9 +3,8 @@ import { StyleSheet, Text, View, Button } from "react-native";
 import { Card, CardProps, deckOfCards } from "./components/Card";
 
 let cards = deckOfCards;
-let i: number = 0;
+let i = 0;
 
-// TODO: 2 of Clubs gets skipped and I'm not sure why, but it might not matter
 const Hand = () => {
   const [hand, setHand] = useState<CardProps[]>([]);
   return (
@@ -14,23 +13,35 @@ const Hand = () => {
       <Button
         title="Draw"
         onPress={() => {
-          setHand((arr) => [...arr, cards[i]]);
-          i++;
+          i = getRandom(0, cards.length - 1);
+          let newItem = cards[i];
+          setHand((arr) => [...arr, newItem]);
+          cards.splice(i, 1);
+        }}
+      />
+      <Button
+        title="Return All"
+        onPress={() => {
+          cards.push(...hand);
+          setHand([]);
         }}
       />
     </View>
   );
 };
 
-// let hand = cards.map(Card);
-
 export default function App() {
   return (
-    // Hand isn't being rerendered, but cards are getting added correctly
     <View style={styles.container}>
       <Hand />
     </View>
   );
+}
+
+function getRandom(min: number, max: number) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 const styles = StyleSheet.create({
