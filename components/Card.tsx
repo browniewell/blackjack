@@ -1,14 +1,29 @@
-import React, { useState } from "react";
-import { Text } from "react-native";
+import React from "react";
+import { ImageSourcePropType } from "react-native";
+import { Image, StyleSheet } from "react-native";
 
-enum Suit {
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 50,
+  },
+  tinyLogo: {
+    width: 68,
+    height: 100,
+  },
+  logo: {
+    width: 66,
+    height: 58,
+  },
+});
+
+export const enum Suit {
   clubs = "C",
   diamonds = "D",
   hearts = "H",
   spades = "S",
 }
 
-enum Value {
+export const enum Rank {
   ace = "A",
   two = "2",
   three = "3",
@@ -25,281 +40,338 @@ enum Value {
 }
 
 export type CardProps = {
-  value: Value;
+  rank: Rank;
   suit: Suit;
-  // Key right now should be "value+suit", and has to be manually set as such.
+  // Key right now should be "rank+suit", and has to be manually set as such.
   // See if there's a way to set that dynamically. It is required to be unique
   // from the other keys: https://sentry.io/answers/unique-key-prop/
   key: string;
+  imageSource: ImageSourcePropType;
 };
+
+// Can we make this an image instead?
+// Is scaling going to be an issue? Need to look that up
+// <Text key={props.key}>
+//   Your card is: {props.rank} of {props.suit}
+// </Text>
 
 export const Card = (props: CardProps) => {
   return (
-    <Text key={props.key}>
-      Your card is: {props.value} of {props.suit}
-    </Text>
+    <Image source={props.imageSource} key={props.key} style={styles.tinyLogo} />
   );
 };
 
 export let deckOfCards: CardProps[] = [
   {
-    value: Value.ace,
+    rank: Rank.ace,
     suit: Suit.clubs,
-    key: `${Value.ace + Suit.clubs}`,
+    key: `${Rank.ace + Suit.clubs}`,
+    imageSource: require(`../assets/card-images/AC.jpg`),
   },
   {
-    value: Value.two,
+    rank: Rank.two,
     suit: Suit.clubs,
-    key: `${Value.two + Suit.clubs}`,
+    key: `${Rank.two + Suit.clubs}`,
+    imageSource: require(`../assets/card-images/2C.jpg`),
   },
   {
-    value: Value.three,
+    rank: Rank.three,
     suit: Suit.clubs,
-    key: `${Value.three + Suit.clubs}`,
+    key: `${Rank.three + Suit.clubs}`,
+    imageSource: require(`../assets/card-images/3C.jpg`),
   },
   {
-    value: Value.four,
+    rank: Rank.four,
     suit: Suit.clubs,
-    key: `${Value.four + Suit.clubs}`,
+    key: `${Rank.four + Suit.clubs}`,
+    imageSource: require(`../assets/card-images/4C.jpg`),
   },
   {
-    value: Value.five,
+    rank: Rank.five,
     suit: Suit.clubs,
-    key: `${Value.five + Suit.clubs}`,
+    key: `${Rank.five + Suit.clubs}`,
+    imageSource: require(`../assets/card-images/5C.jpg`),
   },
   {
-    value: Value.six,
+    rank: Rank.six,
     suit: Suit.clubs,
-    key: `${Value.six + Suit.clubs}`,
+    key: `${Rank.six + Suit.clubs}`,
+    imageSource: require(`../assets/card-images/6C.jpg`),
   },
   {
-    value: Value.seven,
+    rank: Rank.seven,
     suit: Suit.clubs,
-    key: `${Value.seven + Suit.clubs}`,
+    key: `${Rank.seven + Suit.clubs}`,
+    imageSource: require(`../assets/card-images/7C.jpg`),
   },
   {
-    value: Value.eight,
+    rank: Rank.eight,
     suit: Suit.clubs,
-    key: `${Value.eight + Suit.clubs}`,
+    key: `${Rank.eight + Suit.clubs}`,
+    imageSource: require(`../assets/card-images/8C.jpg`),
   },
   {
-    value: Value.nine,
+    rank: Rank.nine,
     suit: Suit.clubs,
-    key: `${Value.nine + Suit.clubs}`,
+    key: `${Rank.nine + Suit.clubs}`,
+    imageSource: require(`../assets/card-images/9C.jpg`),
   },
   {
-    value: Value.ten,
+    rank: Rank.ten,
     suit: Suit.clubs,
-    key: `${Value.ten + Suit.clubs}`,
+    key: `${Rank.ten + Suit.clubs}`,
+    imageSource: require(`../assets/card-images/10C.jpg`),
   },
   {
-    value: Value.jack,
+    rank: Rank.jack,
     suit: Suit.clubs,
-    key: `${Value.jack + Suit.clubs}`,
+    key: `${Rank.jack + Suit.clubs}`,
+    imageSource: require(`../assets/card-images/JC.jpg`),
   },
   {
-    value: Value.queen,
+    rank: Rank.queen,
     suit: Suit.clubs,
-    key: `${Value.queen + Suit.clubs}`,
+    key: `${Rank.queen + Suit.clubs}`,
+    imageSource: require(`../assets/card-images/QC.jpg`),
   },
   {
-    value: Value.king,
+    rank: Rank.king,
     suit: Suit.clubs,
-    key: `${Value.king + Suit.clubs}`,
+    key: `${Rank.king + Suit.clubs}`,
+    imageSource: require(`../assets/card-images/KC.jpg`),
   },
   {
-    value: Value.ace,
+    rank: Rank.ace,
     suit: Suit.diamonds,
-    key: `${Value.ace + Suit.diamonds}`,
+    key: `${Rank.ace + Suit.diamonds}`,
+    imageSource: require(`../assets/card-images/AD.jpg`),
   },
   {
-    value: Value.two,
+    rank: Rank.two,
     suit: Suit.diamonds,
-    key: `${Value.two + Suit.diamonds}`,
+    key: `${Rank.two + Suit.diamonds}`,
+    imageSource: require(`../assets/card-images/2D.jpg`),
   },
   {
-    value: Value.three,
+    rank: Rank.three,
     suit: Suit.diamonds,
-    key: `${Value.three + Suit.diamonds}`,
+    key: `${Rank.three + Suit.diamonds}`,
+    imageSource: require(`../assets/card-images/3D.jpg`),
   },
   {
-    value: Value.four,
+    rank: Rank.four,
     suit: Suit.diamonds,
-    key: `${Value.four + Suit.diamonds}`,
+    key: `${Rank.four + Suit.diamonds}`,
+    imageSource: require(`../assets/card-images/4D.jpg`),
   },
   {
-    value: Value.five,
+    rank: Rank.five,
     suit: Suit.diamonds,
-    key: `${Value.five + Suit.diamonds}`,
+    key: `${Rank.five + Suit.diamonds}`,
+    imageSource: require(`../assets/card-images/5D.jpg`),
   },
   {
-    value: Value.six,
+    rank: Rank.six,
     suit: Suit.diamonds,
-    key: `${Value.six + Suit.diamonds}`,
+    key: `${Rank.six + Suit.diamonds}`,
+    imageSource: require(`../assets/card-images/6D.jpg`),
   },
   {
-    value: Value.seven,
+    rank: Rank.seven,
     suit: Suit.diamonds,
-    key: `${Value.seven + Suit.diamonds}`,
+    key: `${Rank.seven + Suit.diamonds}`,
+    imageSource: require(`../assets/card-images/7D.jpg`),
   },
   {
-    value: Value.eight,
+    rank: Rank.eight,
     suit: Suit.diamonds,
-    key: `${Value.eight + Suit.diamonds}`,
+    key: `${Rank.eight + Suit.diamonds}`,
+    imageSource: require(`../assets/card-images/8D.jpg`),
   },
   {
-    value: Value.nine,
+    rank: Rank.nine,
     suit: Suit.diamonds,
-    key: `${Value.nine + Suit.diamonds}`,
+    key: `${Rank.nine + Suit.diamonds}`,
+    imageSource: require(`../assets/card-images/9D.jpg`),
   },
   {
-    value: Value.ten,
+    rank: Rank.ten,
     suit: Suit.diamonds,
-    key: `${Value.ten + Suit.diamonds}`,
+    key: `${Rank.ten + Suit.diamonds}`,
+    imageSource: require(`../assets/card-images/10D.jpg`),
   },
   {
-    value: Value.jack,
+    rank: Rank.jack,
     suit: Suit.diamonds,
-    key: `${Value.jack + Suit.diamonds}`,
+    key: `${Rank.jack + Suit.diamonds}`,
+    imageSource: require(`../assets/card-images/JD.jpg`),
   },
   {
-    value: Value.queen,
+    rank: Rank.queen,
     suit: Suit.diamonds,
-    key: `${Value.queen + Suit.diamonds}`,
+    key: `${Rank.queen + Suit.diamonds}`,
+    imageSource: require(`../assets/card-images/QD.jpg`),
   },
   {
-    value: Value.king,
+    rank: Rank.king,
     suit: Suit.diamonds,
-    key: `${Value.king + Suit.diamonds}`,
+    key: `${Rank.king + Suit.diamonds}`,
+    imageSource: require(`../assets/card-images/KD.jpg`),
   },
   {
-    value: Value.ace,
+    rank: Rank.ace,
     suit: Suit.hearts,
-    key: `${Value.ace + Suit.hearts}`,
+    key: `${Rank.ace + Suit.hearts}`,
+    imageSource: require(`../assets/card-images/AH.jpg`),
   },
   {
-    value: Value.two,
+    rank: Rank.two,
     suit: Suit.hearts,
-    key: `${Value.two + Suit.hearts}`,
+    key: `${Rank.two + Suit.hearts}`,
+    imageSource: require(`../assets/card-images/2H.jpg`),
   },
   {
-    value: Value.three,
+    rank: Rank.three,
     suit: Suit.hearts,
-    key: `${Value.three + Suit.hearts}`,
+    key: `${Rank.three + Suit.hearts}`,
+    imageSource: require(`../assets/card-images/3H.jpg`),
   },
   {
-    value: Value.four,
+    rank: Rank.four,
     suit: Suit.hearts,
-    key: `${Value.four + Suit.hearts}`,
+    key: `${Rank.four + Suit.hearts}`,
+    imageSource: require(`../assets/card-images/4H.jpg`),
   },
   {
-    value: Value.five,
+    rank: Rank.five,
     suit: Suit.hearts,
-    key: `${Value.five + Suit.hearts}`,
+    key: `${Rank.five + Suit.hearts}`,
+    imageSource: require(`../assets/card-images/5H.jpg`),
   },
   {
-    value: Value.six,
+    rank: Rank.six,
     suit: Suit.hearts,
-    key: `${Value.six + Suit.hearts}`,
+    key: `${Rank.six + Suit.hearts}`,
+    imageSource: require(`../assets/card-images/6H.jpg`),
   },
   {
-    value: Value.seven,
+    rank: Rank.seven,
     suit: Suit.hearts,
-    key: `${Value.seven + Suit.hearts}`,
+    key: `${Rank.seven + Suit.hearts}`,
+    imageSource: require(`../assets/card-images/7H.jpg`),
   },
   {
-    value: Value.eight,
+    rank: Rank.eight,
     suit: Suit.hearts,
-    key: `${Value.eight + Suit.hearts}`,
+    key: `${Rank.eight + Suit.hearts}`,
+    imageSource: require(`../assets/card-images/8H.jpg`),
   },
   {
-    value: Value.nine,
+    rank: Rank.nine,
     suit: Suit.hearts,
-    key: `${Value.nine + Suit.hearts}`,
+    key: `${Rank.nine + Suit.hearts}`,
+    imageSource: require(`../assets/card-images/9H.jpg`),
   },
   {
-    value: Value.ten,
+    rank: Rank.ten,
     suit: Suit.hearts,
-    key: `${Value.ten + Suit.hearts}`,
+    key: `${Rank.ten + Suit.hearts}`,
+    imageSource: require(`../assets/card-images/10H.jpg`),
   },
   {
-    value: Value.jack,
+    rank: Rank.jack,
     suit: Suit.hearts,
-    key: `${Value.jack + Suit.hearts}`,
+    key: `${Rank.jack + Suit.hearts}`,
+    imageSource: require(`../assets/card-images/JH.jpg`),
   },
   {
-    value: Value.queen,
+    rank: Rank.queen,
     suit: Suit.hearts,
-    key: `${Value.queen + Suit.hearts}`,
+    key: `${Rank.queen + Suit.hearts}`,
+    imageSource: require(`../assets/card-images/QH.jpg`),
   },
   {
-    value: Value.king,
+    rank: Rank.king,
     suit: Suit.hearts,
-    key: `${Value.king + Suit.hearts}`,
+    key: `${Rank.king + Suit.hearts}`,
+    imageSource: require(`../assets/card-images/KH.jpg`),
   },
   {
-    value: Value.ace,
+    rank: Rank.ace,
     suit: Suit.spades,
-    key: `${Value.ace + Suit.spades}`,
+    key: `${Rank.ace + Suit.spades}`,
+    imageSource: require(`../assets/card-images/AS.jpg`),
   },
   {
-    value: Value.two,
+    rank: Rank.two,
     suit: Suit.spades,
-    key: `${Value.two + Suit.spades}`,
+    key: `${Rank.two + Suit.spades}`,
+    imageSource: require(`../assets/card-images/2S.jpg`),
   },
   {
-    value: Value.three,
+    rank: Rank.three,
     suit: Suit.spades,
-    key: `${Value.three + Suit.spades}`,
+    key: `${Rank.three + Suit.spades}`,
+    imageSource: require(`../assets/card-images/3S.jpg`),
   },
   {
-    value: Value.four,
+    rank: Rank.four,
     suit: Suit.spades,
-    key: `${Value.four + Suit.spades}`,
+    key: `${Rank.four + Suit.spades}`,
+    imageSource: require(`../assets/card-images/4S.jpg`),
   },
   {
-    value: Value.five,
+    rank: Rank.five,
     suit: Suit.spades,
-    key: `${Value.five + Suit.spades}`,
+    key: `${Rank.five + Suit.spades}`,
+    imageSource: require(`../assets/card-images/5S.jpg`),
   },
   {
-    value: Value.six,
+    rank: Rank.six,
     suit: Suit.spades,
-    key: `${Value.six + Suit.spades}`,
+    key: `${Rank.six + Suit.spades}`,
+    imageSource: require(`../assets/card-images/6S.jpg`),
   },
   {
-    value: Value.seven,
+    rank: Rank.seven,
     suit: Suit.spades,
-    key: `${Value.seven + Suit.spades}`,
+    key: `${Rank.seven + Suit.spades}`,
+    imageSource: require(`../assets/card-images/7S.jpg`),
   },
   {
-    value: Value.eight,
+    rank: Rank.eight,
     suit: Suit.spades,
-    key: `${Value.eight + Suit.spades}`,
+    key: `${Rank.eight + Suit.spades}`,
+    imageSource: require(`../assets/card-images/8S.jpg`),
   },
   {
-    value: Value.nine,
+    rank: Rank.nine,
     suit: Suit.spades,
-    key: `${Value.nine + Suit.spades}`,
+    key: `${Rank.nine + Suit.spades}`,
+    imageSource: require(`../assets/card-images/9S.jpg`),
   },
   {
-    value: Value.ten,
+    rank: Rank.ten,
     suit: Suit.spades,
-    key: `${Value.ten + Suit.spades}`,
+    key: `${Rank.ten + Suit.spades}`,
+    imageSource: require(`../assets/card-images/10S.jpg`),
   },
   {
-    value: Value.jack,
+    rank: Rank.jack,
     suit: Suit.spades,
-    key: `${Value.jack + Suit.spades}`,
+    key: `${Rank.jack + Suit.spades}`,
+    imageSource: require(`../assets/card-images/JS.jpg`),
   },
   {
-    value: Value.queen,
+    rank: Rank.queen,
     suit: Suit.spades,
-    key: `${Value.queen + Suit.spades}`,
+    key: `${Rank.queen + Suit.spades}`,
+    imageSource: require(`../assets/card-images/QS.jpg`),
   },
   {
-    value: Value.king,
+    rank: Rank.king,
     suit: Suit.spades,
-    key: `${Value.king + Suit.spades}`,
+    key: `${Rank.king + Suit.spades}`,
+    imageSource: require(`../assets/card-images/KS.jpg`),
   },
 ];

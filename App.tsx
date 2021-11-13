@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
-import { Card, CardProps, deckOfCards } from "./components/Card";
+import { Card, CardProps, deckOfCards, Rank, Suit } from "./components/Card";
 
 let cards = deckOfCards;
 let i = 0;
@@ -37,6 +37,19 @@ export default function App() {
     </View>
   );
 }
+
+// export default function App() {
+//   return (
+//     <View style={styles.container}>
+//       <Card
+//         rank={Rank.ace}
+//         suit={Suit.clubs}
+//         key={"test"}
+//         imageSource={require(`./assets/card-images/AC.jpg`)}
+//       />
+//     </View>
+//   );
+// }
 
 function getRandom(min: number, max: number) {
   min = Math.ceil(min);
