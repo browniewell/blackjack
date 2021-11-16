@@ -9,7 +9,9 @@ const Hand = () => {
   const [hand, setHand] = useState<CardProps[]>([]);
   return (
     <View>
-      {hand?.map(Card)}
+      <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+        {hand?.map(Card)}
+      </View>
       <Button
         title="Draw"
         onPress={() => {
@@ -37,19 +39,6 @@ export default function App() {
     </View>
   );
 }
-
-// export default function App() {
-//   return (
-//     <View style={styles.container}>
-//       <Card
-//         rank={Rank.ace}
-//         suit={Suit.clubs}
-//         key={"test"}
-//         imageSource={require(`./assets/card-images/AC.jpg`)}
-//       />
-//     </View>
-//   );
-// }
 
 function getRandom(min: number, max: number) {
   min = Math.ceil(min);
